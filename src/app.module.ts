@@ -8,12 +8,12 @@ import { NotesModule } from './modules/notes/notes.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: 'postgresql://notes_postgres_5i3h_user:RTfxAYH0anymaY3t368qQhsHDOrDeuIb@dpg-d4g7936fu37c739poch0-a/notes_postgres_5i3h',
-      port: 5432,
-      username: process.env.DB_USER,
-      password: process.env.DB_NAME,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: false,
+      url: process.env.DATABASE_URL,
+      autoLoadEntities: true,
+      synchronize: true,
+      ssl: {
+        rejectUnauthorized: false,
+      },
     }),
     NotesModule,
   ],
